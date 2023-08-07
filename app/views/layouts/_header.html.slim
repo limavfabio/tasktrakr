@@ -1,0 +1,31 @@
+header
+  nav.navbar.navbar-expand-lg.bg-body-tertiary
+    .container-fluid
+      a.navbar-brand href="#" Navbar
+
+      button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation"
+        span.navbar-toggler-icon
+
+      div.collapse.navbar-collapse#navbarSupportedContent
+        ul.navbar-nav.me-auto.mb-2.mb-lg-0
+          li.nav-item
+            a.nav-link href="/projects/inbox" Project
+
+
+        div.dropdown
+          a role="button" data-bs-toggle="dropdown" aria-expanded="false"
+            = image_tag('default_avatar.avif', class: 'profile-image')
+
+          ul.dropdown-menu.dropdown-menu-end
+            li
+              = button_to 'Logout', destroy_user_session_path, method: :delete, class:'btn'
+
+        / div.d-flex
+        /   span Current user is:
+        /   strong
+        /     - if user_signed_in?
+        /       = current_user.name
+        /     - else
+        /       | User not signed in
+
+        /   = button_to 'Logout', destroy_user_session_path, method: :delete

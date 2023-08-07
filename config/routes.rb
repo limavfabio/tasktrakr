@@ -1,6 +1,20 @@
-Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+# frozen_string_literal: true
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+Rails.application.routes.draw do
+  devise_for :users, skip: [:sessions]
+  as :user do
+    get 'signin', to: 'devise/sessions#new', as: :new_user_session
+    post 'signin', to: 'devise/sessions#create', as: :user_session
+    delete 'signout', to: 'devise/sessions#destroy', as: :destroy_user_session
+  end
+
+  resources :users, only: %i[ create update destroy ]
+
+  resources :projects, except: %i[ index ] do
+    resources :tasks, except: %i[ index ]
+    post 'add_collaborator', on: :member
+    get 'inbox', on: :collection
+  end
+
+  root 'projects#inbox'
 end

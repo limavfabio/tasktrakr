@@ -58,8 +58,15 @@ end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem "web-console"
-
+  gem 'erb-formatter'
+  gem 'letter_opener'
+  # gem 'rubocop', require: false
+  # gem 'rubocop-rails', require: false
+  gem 'ruby-lsp-rails'
+  gem 'slim'
+  gem 'web-console'
+  gem 'faker'
+  gem 'rails_live_reload'
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
@@ -69,7 +76,11 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
-  gem "webdrivers"
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'webdrivers'
 end
+
+gem 'devise', '~> 4.9'
+
+gem 'cancancan'

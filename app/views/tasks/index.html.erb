@@ -1,0 +1,12 @@
+<h1>Tasks</h1>
+
+<div id="tasks">
+  <% @tasks.each do |task| %>
+    <%= render task %>
+    <p>
+      <%= link_to "Show this task", project_task_path(@project, task) %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New task", new_project_task_path %>
