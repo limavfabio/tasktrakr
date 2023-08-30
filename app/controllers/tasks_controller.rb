@@ -19,7 +19,9 @@ class TasksController < ApplicationController
   end
 
   # GET /tasks/1/edit
-  def edit; end
+  def edit
+    @projects = current_user.projects
+  end
 
   # POST /tasks or /tasks.json
   def create
