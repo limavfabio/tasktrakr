@@ -39,7 +39,7 @@ div
 
   / Task list
   ul.list-group.mt-4 data-controller="tasks"
-    - @project.tasks.sort_by(&:id).reverse_each do |task|
+    - @project.tasks.sort_by(&:position).each do |task|
       / Task
       li.list-group-item
         = turbo_frame_tag dom_id task
