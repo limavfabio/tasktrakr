@@ -10,7 +10,6 @@ export default class extends Controller {
         const taskId = event.item.dataset.taskId
         const projectId = event.item.dataset.projectId
         const newPosition = event.newIndex + 1
-        console.log(projectId)
 
         fetch(`/projects/${projectId}/tasks/${taskId}/reorder`, {
           method: "PATCH",
