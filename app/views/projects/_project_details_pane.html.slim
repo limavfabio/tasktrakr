@@ -38,10 +38,10 @@ div
           div = user.name
 
   / Task list
-  ul.list-group.mt-4 data-controller="tasks"
+  ul.list-group.mt-4 data-controller="drag-and-drop"
     - @project.tasks.sort_by(&:position).each do |task|
       / Task
-      li.list-group-item
+      li.list-group-item data-task-id=(task.id) data-project-id=(task.project.id)
         = turbo_frame_tag dom_id task
           .d-flex.justify-content-between.align-items-center#dom_id(task)
 

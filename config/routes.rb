@@ -11,7 +11,10 @@ Rails.application.routes.draw do
   resources :users, only: %i[ create update destroy ]
 
   resources :projects, except: %i[ index ] do
-    resources :tasks, except: %i[ index ]
+    resources :tasks, except: %i[ index ] do
+      patch 'reorder', on: :member
+    end
+
     post 'add_collaborator', on: :member
     get 'inbox', on: :collection
   end

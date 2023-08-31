@@ -2,7 +2,7 @@
 
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_task, only: %i[show edit update destroy]
+  before_action :set_task, only: %i[show edit update destroy reorder]
   before_action :set_project
 
   # GET /tasks or /tasks.json
@@ -59,6 +59,15 @@ class TasksController < ApplicationController
       format.html { redirect_to project_path(@project), notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # PATCH/PUT projects/1/tasks/1 or projects/1/tasks/1.json
+  def reorder
+    new_position = params[:new_position].to_i
+
+    @task.insert_at(new_position)
+
+    head :no_content
   end
 
   private
