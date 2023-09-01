@@ -6,6 +6,10 @@ export default class extends Controller {
   connect() {
     new Sortable(this.element, {
       animation: 150,
+      delay: 100,
+      delayOnTouchOnly: true,
+      touchStartThreshold: 10,
+
       onEnd: (event) => {
         const taskId = event.item.dataset.taskId
         const projectId = event.item.dataset.projectId
