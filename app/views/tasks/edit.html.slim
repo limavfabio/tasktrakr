@@ -1,5 +1,5 @@
 = turbo_frame_tag dom_id @task
-  = form_with(model: [@project, @task]) do |f|
+  = form_with(model: [@task]) do |f|
     .
       .form-group
         = f.text_field :title, class: 'form-control', placeholder: 'Title'

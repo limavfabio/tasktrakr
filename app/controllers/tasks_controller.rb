@@ -3,7 +3,7 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_task, only: %i[show edit update destroy reorder]
-  before_action :set_project
+  before_action :set_project, only: %i[index new create]
 
   # GET /tasks or /tasks.json
   def index
@@ -53,10 +53,11 @@ class TasksController < ApplicationController
 
   # DELETE /tasks/1 or /tasks/1.json
   def destroy
+    project = @task.project
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to project_path(@project), notice: 'Task was successfully destroyed.' }
+      format.html { redirect_to project_path(project), notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

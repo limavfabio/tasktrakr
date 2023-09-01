@@ -1,0 +1,15 @@
+li.list-group-item data-task-id=(task.id) data-project-id=(task.project.id)
+        = turbo_frame_tag dom_id task
+          .d-flex.justify-content-between.align-items-center#dom_id(task)
+
+            = task.title
+
+            = task.due_date
+            / Dropdown
+            .dropdown
+              button.btn.btn-secondary.dropdown-toggle data-bs-toggle="dropdown" type="button"
+              ul.dropdown-menu
+                li.dropdown-item
+                  = link_to "Edit task", edit_task_path(task), class:"btn"
+                li.dropdown-item
+                  = button_to "Delete task", task_path(task), method: :delete, data: { "turbo-frame": "_top" }, class:"btn"

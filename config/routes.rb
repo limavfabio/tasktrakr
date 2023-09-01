@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[ create update destroy ]
 
-  resources :projects, except: %i[ index ] do
+  resources :projects, shallow: true, except: %i[ index ] do
     resources :tasks, except: %i[ index ] do
       patch 'reorder', on: :member
     end
