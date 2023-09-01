@@ -38,10 +38,12 @@ div
           div = user.name
 
   / Task list
-  ul.list-group.mt-4 data-controller="drag-and-drop"
+  = turbo_stream_from "project"
+  ul.list-group.mt-4#tasks data-controller="drag-and-drop"
     - @project.tasks.sort_by(&:position).each do |task|
       / Task
       = render task
+
   / Add task form
   div.mt-1
     = form_with(model: [@project, Task.new]) do |form|

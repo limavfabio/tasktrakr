@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   end
 
   root 'projects#inbox'
+
+  mount ActionCable.server => '/cable'
 end
