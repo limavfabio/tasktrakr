@@ -38,7 +38,6 @@ div
           div = user.name
 
   / Task list
-  = turbo_stream_from "project"
   ul.list-group.mt-4#tasks data-controller="drag-and-drop"
     - @project.tasks.sort_by(&:position).each do |task|
       / Task

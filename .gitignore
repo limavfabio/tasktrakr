@@ -42,3 +42,5 @@
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+/dump.rdb
