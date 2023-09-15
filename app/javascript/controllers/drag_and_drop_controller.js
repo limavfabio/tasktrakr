@@ -12,10 +12,9 @@ export default class extends Controller {
 
       onEnd: (event) => {
         const taskId = event.item.dataset.taskId
-        const projectId = event.item.dataset.projectId
         const newPosition = event.newIndex + 1
 
-        fetch(`/projects/${projectId}/tasks/${taskId}/reorder`, {
+        fetch(`/tasks/${taskId}/reorder`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
