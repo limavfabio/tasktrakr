@@ -3,3 +3,44 @@
   height: 40px;
   border-radius: 50%;
 }
+
+/* Reset default browser styles */
+.todo-list,
+.todo-item {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Custom styling for the todo list container */
+.todo-list {
+  background-color: #f7f7f7; /* Set your desired background color */
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+/* Custom styling for todo list items */
+.todo-item {
+  margin-bottom: 10px; /* Spacing between todo items */
+  background-color: #ffffff; /* Item background color */
+  padding: 10px; /* Item padding */
+  border: 1px solid #ccc; /* Item border */
+  border-radius: 4px; /* Rounded corners */
+}
+
+/* Style for completed todo items (you can customize this further) */
+.todo-item.completed {
+  text-decoration: line-through; /* Strike through completed items */
+  opacity: 0.6; /* Reduced opacity for completed items */
+}
+
+/* Custom styling for todo item text */
+.todo-item-text {
+  font-size: 16px; /* Adjust the font size */
+  color: #333; /* Text color */
+}
+
+/* Style for todo item checkboxes (assuming you have checkboxes for completion) */
+.todo-item-checkbox {
+  margin-right: 5px; /* Spacing between checkbox and text */
+}
