@@ -29,6 +29,8 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
+        ActionCable.server.broadcast "task_channel", { type: "create", task: @task }
+
         format.html { redirect_to project_path(@project), notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
@@ -42,6 +44,8 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
+        ActionCable.server.broadcast "task_channel", { type: "update", task: @task }
+
         format.html { redirect_to project_url(@task.project), notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
@@ -57,6 +61,8 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
+      ActionCable.server.broadcast "task_channel", { type: "destroy", task: @task }
+
       format.html { redirect_to project_path(project), notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
