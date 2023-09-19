@@ -354,6 +354,7 @@ __metadata:
     autoprefixer: ^10.4.14
     bootstrap: ^5.3.1
     bootstrap-icons: ^1.10.5
+    cable_ready: ^5.0.1
     esbuild: ^0.18.19
     nodemon: ^3.0.1
     postcss: ^8.4.27
@@ -467,6 +468,15 @@ __metadata:
   bin:
     browserslist: cli.js
   checksum: 1e27c0f111a35d1dd0e8fc2c61781b0daefabc2c9471b0b10537ce54843014bceb2a1ce4571af1a82b2bf1e6e6e05d38865916689a158f03bc2c7a4ec2577db8
+  languageName: node
+  linkType: hard
+
+"cable_ready@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "cable_ready@npm:5.0.1"
+  dependencies:
+    morphdom: 2.6.1
+  checksum: a6807b106e745e27cb68fc27f8c5ffc4fafa60716e23b0a873869856d030bfa9eba183fd55608ea079636ff27689f689b78f719946eb744075328f9c7ce69830
   languageName: node
   linkType: hard
 
@@ -1344,6 +1354,13 @@ __metadata:
   bin:
     mkdirp: bin/cmd.js
   checksum: a96865108c6c3b1b8e1d5e9f11843de1e077e57737602de1b82030815f311be11f96f09cce59bd5b903d0b29834733e5313f9301e3ed6d6f6fba2eae0df4298f
+  languageName: node
+  linkType: hard
+
+"morphdom@npm:2.6.1":
+  version: 2.6.1
+  resolution: "morphdom@npm:2.6.1"
+  checksum: 8930281b27df2c918a168872a650931d92ac728b9177ed6d74779acf40a4bf6a1c62482a267496a1007f9658d0c6a4125e7080ec1194c6b937ff55f903235ad0
   languageName: node
   linkType: hard
 

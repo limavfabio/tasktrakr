@@ -14,13 +14,16 @@ consumer.subscriptions.create("TaskChannel", {
 
 
     if (data.type === "create") {
-      console.log("Task Added!", data.task)
+      console.log("Task added!", data.task)
 
     } else if (data.type === "update") {
-      console.log("Task Updated!", data.task)
+      console.log("Task updated!", data.task)
 
     } else if (data.type === "destroy") {
-      console.log("Task Destroyed!", data.task)
+      console.log("Task destroyed!", data.task)
+
+    } else if (data.type === "reorder") {
+      console.log("Task reordered!", data.task)
 
     }
 

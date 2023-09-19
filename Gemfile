@@ -86,3 +86,5 @@ gem 'devise', '~> 4.9'
 gem 'cancancan'
 
 gem "acts_as_list", "~> 1.1"
+
+gem "cable_ready", "~> 5.0.1"

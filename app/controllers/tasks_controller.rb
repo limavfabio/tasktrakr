@@ -73,6 +73,7 @@ class TasksController < ApplicationController
     new_position = params[:new_position].to_i
 
     @task.insert_at(new_position)
+    ActionCable.server.broadcast "task_channel", { type: "reorder", task: @task }
 
     head :no_content
   end
