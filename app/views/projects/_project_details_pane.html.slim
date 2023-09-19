@@ -41,7 +41,8 @@ div
   ul.todo-list.mt-4#tasks data-controller="drag-and-drop"
     - @project.tasks.sort_by(&:position).each do |task|
       / Task
-      = render task
+      div id=dom_id(task)
+        = render task
 
   / Add task form
   div.mt-1

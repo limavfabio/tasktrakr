@@ -46,6 +46,7 @@ class TasksController < ApplicationController
       if @task.update(task_params)
         ActionCable.server.broadcast "task_channel", { type: "update", task: @task }
 
+        @task.broadcast_update
         format.html { redirect_to project_url(@task.project), notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
