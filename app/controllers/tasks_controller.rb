@@ -78,7 +78,7 @@ class TasksController < ApplicationController
     @task.insert_at(new_position)
     ActionCable.server.broadcast "task_channel", { type: "reorder", task: @task }
 
-    # @task.broadcast_update
+    @task.project.broadcast_replace
     head :no_content
   end
 
