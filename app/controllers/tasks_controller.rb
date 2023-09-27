@@ -29,9 +29,9 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        ActionCable.server.broadcast "task_channel", { type: "create", task: @task }
+        # ActionCable.server.broadcast "task_channel", { type: "create", task: @task }
 
-        @task.broadcast_append_to(@project)
+        @task.broadcast_append_to(@project, target: "tasks-table")
         format.html { head :no_content, notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
@@ -45,7 +45,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        ActionCable.server.broadcast "task_channel", { type: "update", task: @task }
+        # ActionCable.server.broadcast "task_channel", { type: "update", task: @task }
 
         @task.broadcast_replace
         format.html { head :no_content, notice: 'Task was successfully updated.' }
@@ -64,7 +64,7 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
-      ActionCable.server.broadcast "task_channel", { type: "destroy", task: @task }
+      # ActionCable.server.broadcast "task_channel", { type: "destroy", task: @task }
 
       format.html { head :no_content, notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
@@ -74,11 +74,12 @@ class TasksController < ApplicationController
   # PATCH/PUT projects/1/tasks/1 or projects/1/tasks/1.json
   def reorder
     new_position = params[:new_position].to_i
+    old_position = @task.position
 
     @task.insert_at(new_position)
-    ActionCable.server.broadcast "task_channel", { type: "reorder", task: @task }
+    ActionCable.server.broadcast "task_channel", { type: "reorder", task: @task, old_position: }
+    @task.project.broadcast_replace(partial: "tasks/tasks_table", target: "tasks-table")
 
-    @task.project.broadcast_replace
     head :no_content
   end
 

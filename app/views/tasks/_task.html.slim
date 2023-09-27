@@ -3,9 +3,9 @@ li.todo-item id=dom_id(task) data-task-id=(task.id)
   = turbo_frame_tag "turbo_frame_task_#{task.id}"
     .d-flex.justify-content-between.align-items-center
 
+      = task.position
+      | -
       = task.title
-
-      = task.due_date
       / Dropdown
       .dropdown
         button.btn.btn-secondary.dropdown-toggle data-bs-toggle="dropdown" type="button"

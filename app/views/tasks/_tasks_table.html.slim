@@ -1,0 +1,5 @@
+= turbo_stream_from project
+ul.todo-list.mt-4#tasks-table data-controller="drag-and-drop"
+  - project.tasks.sort_by(&:position).each do |task|
+    / Task
+    = render task

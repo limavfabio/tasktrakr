@@ -13,17 +13,8 @@ consumer.subscriptions.create("TaskChannel", {
     // Called when there's incoming data on the websocket for this channel
 
 
-    if (data.type === "create") {
-      console.log("Task added!", data.task)
-
-    } else if (data.type === "update") {
-      console.log("Task updated!", data.task)
-
-    } else if (data.type === "destroy") {
-      console.log("Task destroyed!", data.task)
-
-    } else if (data.type === "reorder") {
-      console.log("Task reordered!", data.task)
+    if (data.type === "reorder") {
+      console.log("Task reordered!", data.task, "Old Position:", data.old_position)
 
     }
 

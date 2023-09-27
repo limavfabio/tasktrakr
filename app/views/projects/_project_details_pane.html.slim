@@ -38,15 +38,11 @@ div
           div = user.name
 
   / Task list
-  = turbo_stream_from @project
-  ul.todo-list.mt-4#tasks data-controller="drag-and-drop"
-    - @project.tasks.sort_by(&:position).each do |task|
-      / Task
-      = render task
+  = render "tasks/tasks_table", project: @project
 
   / Add task form
-  div.mt-1
-    = form_with(model: [@project, Task.new]) do |form|
+  div.mt-1#tasks-form
+    = form_with model: [@project, Task.new], data: { turbo_frame: "tasks-form" } do |form|
       .mb-3.d-flex
         = form.text_field :title, class: "form-control", placeholder: "Enter task title"
         = form.submit "Create Task", class: "btn btn-primary"
