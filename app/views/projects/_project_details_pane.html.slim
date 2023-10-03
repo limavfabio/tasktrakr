@@ -34,7 +34,7 @@ div
     div.d-flex
       h5 Collaborators:
       ul.d-flex.gap-3
-        - @project.users.each do |user|
+        - @project.users.reverse_each do |user|
           div = user.name
 
   / Task list
