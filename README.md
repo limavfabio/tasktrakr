@@ -8,6 +8,8 @@ TaskTrakr is a web-based task management application built with Ruby on Rails an
 - **Drag and Drop**: Easily reorder tasks by dragging and dropping them within your project board.
 - **User Authentication**: Secure user authentication system to protect your data.
 - **Project Management**: Organize tasks into projects for better task management.
+- **Collaborative Task Management**: Collaborate with team members in real-time, making it easy to work together on projects.
+- **Mobile-Friendly Interface**: Access TaskTrakr on the go with a responsive and intuitive mobile interface.
 - **Clean and Intuitive Interface**: A user-friendly interface that makes task management a breeze.
 
 ## Getting Started
