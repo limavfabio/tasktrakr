@@ -24,18 +24,20 @@ div
   div
     .d-flex.justify-content-between
       h3 = @project.name
-      .dropdown
-        button.btn.btn-secondary.dropdown-toggle data-bs-toggle="dropdown" type="button"
-        ul.dropdown-menu
-          li.dropdown-item
-            a. role="button" data-bs-toggle="modal" data-bs-target="#addCollaboratorModal"
-              | Add collaborator
+      - unless @project.is_inbox?
+        .dropdown
+          button.btn.btn-secondary.dropdown-toggle data-bs-toggle="dropdown" type="button"
+          ul.dropdown-menu
+            li.dropdown-item
+              a. role="button" data-bs-toggle="modal" data-bs-target="#addCollaboratorModal"
+                | Add collaborator
 
-    div.d-flex
-      h5 Collaborators:
-      ul.d-flex.gap-3
-        - @project.users.reverse_each do |user|
-          div = user.name
+    - unless @project.is_inbox?
+      div.d-flex
+        h5 Collaborators:
+        ul.d-flex.gap-3
+          - @project.users.reverse_each do |user|
+            div = user.name
 
   / Task list
   = render "tasks/tasks_table", project: @project
@@ -47,4 +49,5 @@ div
         = form.text_field :title, class: "form-control", placeholder: "Enter task title"
         = form.submit "Create Task", class: "btn btn-primary"
 
-  = button_to "Destroy this project", @project, method: :delete, data: { confirm: "Are you sure you want to delete this project?" }, class: "btn btn-danger"
+  - unless @project.is_inbox?
+    = button_to "Destroy this project", @project, method: :delete, data: { confirm: "Are you sure you want to delete this project?" }, class: "btn btn-danger"
