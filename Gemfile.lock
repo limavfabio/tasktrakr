@@ -105,6 +105,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dockerfile-rails (1.5.10)
+      rails (>= 3.0.0)
     erb-formatter (0.4.3)
       syntax_tree (~> 6.0)
     erubi (1.12.0)
@@ -225,6 +227,11 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    sentry-rails (5.12.0)
+      railties (>= 5.0)
+      sentry-ruby (~> 5.12.0)
+    sentry-ruby (5.12.0)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
     slim (5.1.1)
       temple (~> 0.10.0)
       tilt (>= 2.1.0)
@@ -282,6 +289,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise (~> 4.9)
+  dockerfile-rails (>= 1.5)
   erb-formatter
   faker
   jbuilder
@@ -294,6 +302,8 @@ DEPENDENCIES
   redis (~> 4.0)
   ruby-lsp-rails
   selenium-webdriver
+  sentry-rails (~> 5.12)
+  sentry-ruby (~> 5.12)
   slim
   sprockets-rails
   stimulus-rails

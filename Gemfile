@@ -48,6 +48,8 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 # gem "sassc-rails"
 
+gem 'slim'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -63,7 +65,6 @@ group :development do
   # gem 'rubocop', require: false
   # gem 'rubocop-rails', require: false
   gem 'ruby-lsp-rails'
-  gem 'slim'
   gem 'web-console'
   gem 'faker'
   gem 'rails_live_reload'
@@ -88,3 +89,9 @@ gem 'cancancan'
 gem "acts_as_list", "~> 1.1"
 
 gem "cable_ready", "~> 5.0.1"
+
+gem "dockerfile-rails", ">= 1.5", :group => :development
+
+gem "sentry-ruby", "~> 5.12"
+
+gem "sentry-rails", "~> 5.12"
