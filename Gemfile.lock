@@ -247,6 +247,8 @@ GEM
       railties (>= 6.0.0)
     syntax_tree (6.1.1)
       prettier_print (>= 1.2.0)
+    tailwindcss-rails (2.0.31-x86_64-linux)
+      railties (>= 6.0.0)
     temple (0.10.2)
     thor (1.2.2)
     thread-local (1.1.0)
@@ -307,6 +309,7 @@ DEPENDENCIES
   slim
   sprockets-rails
   stimulus-rails
+  tailwindcss-rails (~> 2.0)
   turbo-rails
   tzinfo-data
   web-console

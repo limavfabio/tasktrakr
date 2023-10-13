@@ -1,3 +1,4 @@
 web: unset PORT && env RUBY_DEBUG_OPEN=true bin/rails server -b 192.168.0.151 -p 3000
+css: bin/rails tailwindcss:watch
 js: yarn build --watch
 redis: redis-server
