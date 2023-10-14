@@ -1,0 +1,45 @@
+<div>
+  <div>
+    <div class="flex justify-between">
+      <h3><%= @project.name %></h3>
+      <% unless @project.is_inbox? %>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" type="button"></button>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item">
+              <a role="button" data-bs-toggle="modal" data-bs-target="#addCollaboratorModal">Add collaborator</a>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+
+    <% unless @project.is_inbox? %>
+      <div class="flex">
+        <h5>Collaborators:</h5>
+        <ul class="flex gap-3">
+          <% @project.users.reverse_each do |user| %>
+            <div><%= user.name %></div>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Task list -->
+  <%= render "tasks/tasks_table", project: @project %>
+
+  <!-- Add task form -->
+  <div class="mt-1" id="tasks-form">
+    <%= form_with(model: [@project, Task.new], data: { turbo_frame: "tasks-form", controller: "reset-form", action: "turbo:submit-end->reset-form#reset" }) do |form| %>
+      <div class="mb-3 flex">
+        <%= form.text_field :title, class: "form-control", placeholder: "Enter task title" %>
+        <%= form.submit "Create Task", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+
+  <% unless @project.is_inbox? %>
+    <%= button_to "Destroy this project", @project, method: :delete, data: { confirm: "Are you sure you want to delete this project?" }, class: "btn btn-danger" %>
+  <% end %>
+</div>
