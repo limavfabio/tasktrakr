@@ -1,4 +1,4 @@
-<!-- Task -->
+<!-- This task needs to be a separate component for turbo_stream_append to work -->
 <li class="mt-2 p-2 border" id="<%= dom_id(task) %>" data-task-id="<%= task.id %>">
   <%= turbo_stream_from task %>
   <%= turbo_frame_tag "turbo_frame_task_#{task.id}" do %>
