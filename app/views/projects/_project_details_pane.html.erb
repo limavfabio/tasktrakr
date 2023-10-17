@@ -1,30 +1,35 @@
 <div>
-  <div>
-    <div class="flex justify-between">
-      <h3><%= @project.name %></h3>
-      <% unless @project.is_inbox? %>
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" type="button"></button>
-          <ul class="dropdown-menu">
-            <li class="dropdown-item">
-              <a role="button" data-bs-toggle="modal" data-bs-target="#addCollaboratorModal">Add collaborator</a>
-            </li>
-          </ul>
-        </div>
-      <% end %>
-    </div>
-
+<div>
+  <div class="flex justify-between items-center py-4">
+    <h3 class="text-2xl font-semibold"><%= @project.name %></h3>
     <% unless @project.is_inbox? %>
-      <div class="flex">
-        <h5>Collaborators:</h5>
-        <ul class="flex gap-3">
-          <% @project.users.reverse_each do |user| %>
-            <div><%= user.name %></div>
-          <% end %>
+      <div class="dropdown relative group">
+        <button class="px-3 py-2 text-gray-600 transition-colors duration-200 rounded-md group-hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-gray-400" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 group-hover:text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10h14M5 16h14M5 7h14"></path>
+          </svg>
+        </button>
+        <ul class="hidden space-y-2 absolute right-0 w-36 p-2 mt-2 origin-top-right bg-white border border-gray-200 rounded-md shadow-lg group-focus:block">
+          <li>
+            <a role="button" data-bs-toggle="modal" data-bs-target="#addCollaboratorModal" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Add collaborator</a>
+          </li>
         </ul>
       </div>
     <% end %>
   </div>
+
+  <% unless @project.is_inbox? %>
+    <div class="flex items-center space-x-3">
+      <h5 class="text-xl">Collaborators:</h5>
+      <ul class="flex gap-3">
+        <% @project.users.reverse_each do |user| %>
+          <div class="text-sm font-medium text-gray-600"><%= user.name %></div>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+
 
   <!-- Task list -->
   <%= render "tasks/tasks_table", project: @project %>
