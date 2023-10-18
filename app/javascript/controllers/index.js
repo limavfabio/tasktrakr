@@ -9,3 +9,6 @@ application.register("drag-and-drop", DragAndDropController)
 
 import ResetFormController from "./reset_form_controller"
 application.register("reset-form", ResetFormController)
+
+import TaskCheckboxController from "./task_checkbox_controller"
+application.register("task-checkbox", TaskCheckboxController)

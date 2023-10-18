@@ -6,8 +6,10 @@
       <div class="flex items-center justify-center gap-2">
         <input
           type="checkbox"
-          class="defaultCheckbox relative flex h-[20px] min-h-[20px] w-[20px] min-w-[20px] appearance-none items-center justify-center rounded-md border border-gray-300 text-white/0 outline-none transition duration-[0.2s] checked:border-none checked:text-white hover:cursor-pointer checked:bg-brand-500 undefined"
-          name="weekly"
+          class="h-5 w-5 text-navy-600 rounded"
+          name="completed"
+          data-controller="task-checkbox"
+          <%# data-action="change->task-checkbox#toggleComplete" %>
         />
         <p class="text-base font-bold text-navy-700">
           <%= task.position %> - <%= task.title %>
@@ -30,6 +32,8 @@
           ></path>
         </svg>
       </div>
+      <%# Button to delete task %>
+      <%= button_to "Delete", task_path(task), method: :delete, data: { confirm: "Are you sure you want to delete this task?" }, class: "btn btn-danger" %>
     </div>
-    <% end %>
+  <% end %>
 </li>
