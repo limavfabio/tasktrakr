@@ -5,7 +5,7 @@
 
 app = "tasktrakr"
 primary_region = "gru"
-console_command = "/rails/bin/rails console"
+console_command = "/bin/rails console"
 
 [build]
 
