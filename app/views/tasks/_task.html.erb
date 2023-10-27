@@ -7,9 +7,13 @@
         <input
           type="checkbox"
           class="h-5 w-5 text-navy-600 rounded"
-          name="completed"
+          name="completed?"
+          <% if task.completed? %>
+          checked
+          <% end %>
+          data-task-id="<%= task.id %>"
           data-controller="task-checkbox"
-          <%# data-action="change->task-checkbox#toggleComplete" %>
+          data-action="change->task-checkbox#toggleComplete"
         />
         <p class="text-base font-bold text-navy-700">
           <%= task.position %> - <%= task.title %>
