@@ -12,10 +12,11 @@
     "tailwindcss": "latest"
   },
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets"
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
+    "build:css": "bin/rails tailwindcss:watch"
   },
   "browserslist": [
     "defaults"
   ],
-  "packageManager": "yarn@4.0.1"
+  "packageManager": "yarn@1.22.19"
 }
