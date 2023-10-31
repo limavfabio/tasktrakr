@@ -6,6 +6,7 @@
     "@rails/actioncable": "^7.0.7-2",
     "autoprefixer": "latest",
     "esbuild": "^0.19.4",
+    "flowbite": "^2.0.0",
     "nodemon": "^3.0.1",
     "postcss": "latest",
     "sortablejs": "^1.15.0",
