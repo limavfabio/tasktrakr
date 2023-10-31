@@ -68,7 +68,7 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # POST /projects/1
+  # POST /projects/1/add_collaborator
   def add_collaborator
     email = params[:email].downcase
     user = User.find_by(email:)
