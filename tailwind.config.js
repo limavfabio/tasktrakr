@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -7,9 +9,6 @@ module.exports = {
     './app/views/**/*',
     './node_modules/flowbite/**/*.js',
   ],
-  theme: {
-    extend: {},
-  },
   plugins: [
     require('flowbite/plugin')
   ],
