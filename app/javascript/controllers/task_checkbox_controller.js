@@ -21,9 +21,7 @@ export default class extends Controller {
       body: JSON.stringify({ task: { completed: isChecked } }),
     })
       .then(response => {
-        if (response.ok) {
-          // console.log("Task completed status updated.");
-        } else {
+        if (!response.ok) {
           console.error("Failed to update task status.");
         }
       })
