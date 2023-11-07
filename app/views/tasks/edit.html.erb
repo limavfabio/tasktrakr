@@ -1,0 +1,25 @@
+<%= turbo_frame_tag "turbo_frame_task_#{@task.id}" do %>
+  <%= form_with(model: [@task], class:"p-2 flex flex-col") do |f| %>
+    <div>
+      <%= f.label :title, class: '' %>
+      <%= f.text_field :title, class: 'rounded border-gray-400 mb-2 w-full', placeholder: 'Title' %>
+    </div>
+
+    <div>
+      <%= f.label :description, class: '' %>
+      <%= f.text_area :description, class: 'rounded border-gray-400 mb-2 w-full', placeholder: 'Description' %>
+    </div>
+
+    <div>
+      <%= f.label :completed, class: '' %>
+      <%= f.check_box :completed, class: 'rounded border-gray-400 mb-2' %>
+    </div>
+
+    <div>
+      <%= f.label :project, class: '' %>
+      <%= f.collection_select :project_id, @projects, :id, :name, { prompt: "Select a project" }, class: 'rounded border-gray-400 mb-2 w-full' %>
+    </div>
+
+    <%= f.submit 'Update Task', class: 'bg-green-800 text-white ml-auto hover:bg-green-700 hover:cursor-pointer mb-3 p-2 rounded' %>
+  <% end %>
+<% end %>

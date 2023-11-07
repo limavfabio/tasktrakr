@@ -22,7 +22,7 @@ export default class extends Controller {
     })
       .then(response => {
         if (response.ok) {
-          console.log("Task completed status updated.");
+          // console.log("Task completed status updated.");
         } else {
           console.error("Failed to update task status.");
         }

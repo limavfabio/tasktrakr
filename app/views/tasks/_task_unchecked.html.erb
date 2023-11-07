@@ -32,8 +32,52 @@
         />
         <div><%= task.title %></div>
       </div>
-      <div>
-        Options
+      <%# Stimulus Dropdown %>
+      <div data-controller="dropdown" class="relative">
+        <button type="button" data-action="dropdown#toggle click@window->dropdown#hide">Options</button>
+
+        <div
+          data-dropdown-target="menu"
+          class="
+            hidden
+            transition
+            transform
+            origin-top-right
+            absolute
+            right-0
+            bg-white
+            divide-gray-100
+            rounded-lg
+            w-44
+            shadow
+            divide-y
+            z-10
+            p-3
+          "
+          data-transition-enter-from="opacity-0 scale-95"
+          data-transition-enter-to="opacity-100 scale-100"
+          data-transition-leave-from="opacity-100 scale-100"
+          data-transition-leave-to="opacity-0 scale-95"
+        >
+          <ul class="py-2 text-gray-800">
+            <li>
+              <%= link_to "Edit task",
+              edit_task_path(task),
+              class:
+                "block px-4 py-2 hover:bg-gray-100" %>
+            </li>
+            <li>
+              <%= button_to "Destroy task",
+              task,
+              method: :delete,
+              data: {
+                confirm: "Are you sure you want to delete this task?"
+              },
+              class:
+                "block px-4 py-2 hover:bg-gray-100" %>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   <% end %>

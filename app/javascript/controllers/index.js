@@ -7,6 +7,9 @@ import { application } from "./application"
 import DragAndDropController from "./drag_and_drop_controller"
 application.register("drag-and-drop", DragAndDropController)
 
+import DropdownController from "./dropdown_controller"
+application.register("dropdown", DropdownController)
+
 import ResetFormController from "./reset_form_controller"
 application.register("reset-form", ResetFormController)
 
