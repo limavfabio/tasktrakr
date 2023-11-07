@@ -1,0 +1,6 @@
+<%= turbo_stream_from project %>
+<ul class="mt-5" id="tasks-table" data-controller="drag-and-drop">
+  <% project.tasks.sort_by(&:position).each do |task| %>
+    <%= render "tasks/task", task: task %>
+  <% end %>
+</ul>

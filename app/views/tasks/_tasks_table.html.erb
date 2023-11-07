@@ -1,6 +1,20 @@
 <%= turbo_stream_from project %>
-<ul class="mt-5" id="tasks-table" data-controller="drag-and-drop">
+<ul
+  id="tasks-table"
+  data-controller="drag-and-drop"
+  class="
+    max-w-lg
+    mx-auto
+    my-10
+    bg-white
+    p-8
+    rounded-xl
+    shadow
+    shadow-slate-300
+  "
+>
   <% project.tasks.sort_by(&:position).each do |task| %>
-    <%= render "tasks/task", task: task %>
+    <%= render "tasks/task_checked", task: task if task.completed? %>
+    <%= render "tasks/task_unchecked", task: task unless task.completed? %>
   <% end %>
 </ul>
