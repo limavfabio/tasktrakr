@@ -31,7 +31,7 @@ class TasksController < ApplicationController
       if @task.save
         # ActionCable.server.broadcast "task_channel", { type: "create", task: @task }
 
-        @task.broadcast_append_to(@project, target: "tasks-table", partial: "tasks/task_unchecked")
+        @task.broadcast_append_to(@project, target: 'tasks-table', partial: 'tasks/task_unchecked')
         format.html { head :no_content, notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
@@ -47,8 +47,8 @@ class TasksController < ApplicationController
       if @task.update(task_params)
         # ActionCable.server.broadcast "task_channel", { type: "update", task: @task }
 
-        @task.broadcast_replace(partial: "tasks/task_checked") if task_params[:completed]
-        @task.broadcast_replace(partial: "tasks/task_unchecked") unless task_params[:completed]
+        @task.broadcast_replace(partial: 'tasks/task_checked') if task_params[:completed]
+        @task.broadcast_replace(partial: 'tasks/task_unchecked') unless task_params[:completed]
 
         format.html { head :no_content, notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
@@ -79,8 +79,8 @@ class TasksController < ApplicationController
     old_position = @task.position
 
     @task.insert_at(new_position)
-    ActionCable.server.broadcast "task_channel", { type: "reorder", task: @task, old_position: }
-    @task.project.broadcast_replace(partial: "tasks/tasks_table", target: "tasks-table")
+    ActionCable.server.broadcast 'task_channel', { type: 'reorder', task: @task, old_position: }
+    @task.project.broadcast_replace(partial: 'tasks/tasks_table', target: 'tasks-table')
 
     head :no_content
   end

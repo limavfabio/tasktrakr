@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Create some users
 3.times do
   user = User.create!(
@@ -10,7 +12,7 @@
   # Create projects for each user
   3.times do
     project = user.projects.create!(
-      name: Faker::Company.unique.name,
+      name: Faker::Company.unique.name
     )
 
     # Create tasks for each project
@@ -19,7 +21,7 @@
         title: Faker::Lorem.sentence,
         description: Faker::Lorem.paragraph,
         due_date: Faker::Date.forward(days: 30),
-        status: ['todo', 'in_progress', 'done'].sample,
+        status: %w[todo in_progress done].sample,
         completed: Faker::Boolean.boolean(true_ratio: 0.3)
       )
     end
@@ -32,7 +34,7 @@
       title: Faker::Lorem.sentence,
       description: Faker::Lorem.paragraph,
       due_date: Faker::Date.forward(days: 30),
-      status: ['todo', 'in_progress', 'done'].sample,
+      status: %w[todo in_progress done].sample,
       completed: Faker::Boolean.boolean(true_ratio: 0.2)
     )
   end

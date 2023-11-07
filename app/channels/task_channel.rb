@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class TaskChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "task_channel"
+    stream_from 'task_channel'
   end
 
   def unsubscribed

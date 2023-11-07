@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Project < ApplicationRecord
-  has_many :tasks, -> { order(position: :asc)}, dependent: :destroy
+  has_many :tasks, -> { order(position: :asc) }, dependent: :destroy
   has_many :user_projects, dependent: :destroy
   has_many :users, through: :user_projects
 
@@ -23,5 +23,4 @@ class Project < ApplicationRecord
   #     errors.add(:base, "The inbox project cannot be edited.")
   #   end
   # end
-
 end

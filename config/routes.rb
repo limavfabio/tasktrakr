@@ -8,10 +8,10 @@ Rails.application.routes.draw do
     delete 'signout', to: 'devise/sessions#destroy', as: :destroy_user_session
   end
 
-  resources :users, only: %i[ create update destroy ]
+  resources :users, only: %i[create update destroy]
 
-  resources :projects, shallow: true, except: %i[ index ] do
-    resources :tasks, except: %i[ index ] do
+  resources :projects, shallow: true, except: %i[index] do
+    resources :tasks, except: %i[index] do
       patch 'reorder', on: :member
     end
 

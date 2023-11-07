@@ -7,7 +7,6 @@ class Ability
     user ||= User.new # Guest user
     can :manage, Project, user_projects: { user: }
 
-
     # Define abilities for the user here. For example:
     #
     #   return unless user.present?

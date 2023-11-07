@@ -1,10 +1,8 @@
-# frozen_string_literal: true
-
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_projects, only: %i[ inbox show ]
-  before_action :set_project, only: %i[ show edit update destroy add_collaborator]
-  before_action :set_inbox, only: %i[ inbox show ]
+  before_action :set_projects, only: %i[inbox show]
+  before_action :set_project, only: %i[show edit update destroy add_collaborator]
+  before_action :set_inbox, only: %i[inbox show]
 
   # GET /projects/inbox
   def inbox
@@ -90,7 +88,6 @@ class ProjectsController < ApplicationController
 
     redirect_to project_path(@project)
   end
-
 
   private
 
