@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "turbo_frame_task_#{@task.id}" do %>
-  <%= form_with(model: [@task], class:"p-2 flex flex-col") do |f| %>
+  <%= form_with(model: [@task], class:"p-2 flex flex-col sortable-ignore") do |f| %>
     <div>
       <%= f.label :title, class: '' %>
       <%= f.text_field :title, class: 'rounded border-gray-400 mb-2 w-full', placeholder: 'Title' %>
