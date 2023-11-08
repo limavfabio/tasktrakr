@@ -9,6 +9,7 @@ export default class extends Controller {
       delay: 100,
       delayOnTouchOnly: true,
       touchStartThreshold: 10,
+      filter: ".sortable-ignore",
 
       onEnd: (event) => {
         const taskId = event.item.dataset.taskId
