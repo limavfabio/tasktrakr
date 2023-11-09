@@ -11,7 +11,7 @@ export default class extends Controller {
       touchStartThreshold: 10,
       filter: ".sortable-ignore",
 
-      onEnd: (event) => {
+      onUpdate: (event) => {
         const taskId = event.item.dataset.taskId
         const newPosition = event.newIndex + 1
 
