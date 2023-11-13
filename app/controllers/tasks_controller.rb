@@ -45,10 +45,12 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        # ActionCable.server.broadcast "task_channel", { type: "update", task: @task }
 
-        @task.broadcast_replace(partial: 'tasks/task_checked') if task_params[:completed]
-        @task.broadcast_replace(partial: 'tasks/task_unchecked') unless task_params[:completed]
+        if task_params[:completed] == true or task_params[:completed] == '1'
+          @task.broadcast_replace(partial: 'tasks/task_checked')
+        else
+          @task.broadcast_replace(partial: 'tasks/task_unchecked')
+        end
 
         format.html { head :no_content, notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
