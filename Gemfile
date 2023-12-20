@@ -63,12 +63,11 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'erb-formatter'
-  gem 'faker'
+  gem 'faker', require: false
   gem 'letter_opener'
-  gem 'rails_live_reload'
+  gem 'rails_live_reload', require: false
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
-  gem 'ruby-lsp-rails'
   gem 'web-console'
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
