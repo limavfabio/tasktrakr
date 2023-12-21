@@ -65,7 +65,7 @@ group :development do
   gem 'erb-formatter'
   gem 'faker', require: false
   gem 'letter_opener'
-  gem 'rails_live_reload', require: false
+  gem 'rails_live_reload'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
   gem 'web-console'
