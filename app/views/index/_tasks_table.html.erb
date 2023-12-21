@@ -14,7 +14,7 @@
   "
 >
   <% project.tasks.sort_by(&:position).each do |task| %>
-    <%= render "tasks/task_checked", task: task if task.completed? %>
-    <%= render "tasks/task_unchecked", task: task unless task.completed? %>
+    <%= render "index/task_checked", task: task if task.completed? %>
+    <%= render "index/task_unchecked", task: task unless task.completed? %>
   <% end %>
 </ul>

@@ -8,12 +8,14 @@ class ProjectsController < ApplicationController
   def inbox
     @project = @inbox
 
-    render template: 'projects/show'
+    render template: 'index/show'
   end
 
   # GET /projects/1 or /projects/1.json
   def show
     authorize! :manage, @project
+
+    render template: 'index/show'
   end
 
   # GET /projects/new
