@@ -31,7 +31,7 @@ class TasksController < ApplicationController
       if @task.save
         # ActionCable.server.broadcast "task_channel", { type: "create", task: @task }
 
-        @task.broadcast_append_to(@project, target: 'tasks-table', partial: 'tasks/task_unchecked')
+        @task.broadcast_append_to(@project, target: 'tasks-table', partial: 'index/task_unchecked')
         format.html { head :no_content, notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else

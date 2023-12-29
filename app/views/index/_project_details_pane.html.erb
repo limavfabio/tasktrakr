@@ -76,7 +76,7 @@
   <!-- Add task form -->
   <div class="mt-1" id="tasks-form">
     <%= form_with(model: [@project, Task.new], data: { turbo_frame: "tasks-form", controller: "reset-form", action: "turbo:submit-end->reset-form#reset" }) do |form| %>
-      <div class="mb-3 flex">
+      <div class="mb-3 flex dark:text-gray-900">
         <%= form.text_field :title, class: "rounded mr-3", placeholder: "Enter task title" %>
         <%= form.submit "Create Task", class: "border px-4 py-3 bg-green-700 text-white rounded hover:bg-green-600" %>
       </div>
