@@ -3,6 +3,7 @@ require 'test_helper'
 class ProjectTest < ActiveSupport::TestCase
   def setup
     @project = projects(:project1)
+    @user = users(:user1)
   end
 
   test 'should be valid' do
@@ -20,8 +21,8 @@ class ProjectTest < ActiveSupport::TestCase
   end
 
   test 'associated tasks should be destroyed' do
-    @project.save
-    @project.tasks.create!(title: 'Example Task', description: 'Lorem ipsum', due_date: Date.current)
+    project = @user.projects.create(name: 'Test Project')
+    project.tasks.create!(title: 'Example Task', description: 'Lorem ipsum', due_date: Date.current)
     assert_difference 'Task.count', -1 do
       @project.destroy
     end
