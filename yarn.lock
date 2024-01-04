@@ -396,24 +396,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"app@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "app@workspace:."
-  dependencies:
-    "@hotwired/stimulus": "npm:^3.2.2"
-    "@hotwired/turbo-rails": "npm:^7.3.0"
-    "@rails/actioncable": "npm:^7.0.7-2"
-    autoprefixer: "npm:latest"
-    esbuild: "npm:^0.19.4"
-    flowbite: "npm:^2.0.0"
-    nodemon: "npm:^3.0.1"
-    postcss: "npm:latest"
-    sortablejs: "npm:^1.15.0"
-    stimulus-dropdown: "npm:^2.1.0"
-    tailwindcss: "npm:latest"
-  languageName: unknown
-  linkType: soft
-
 "arg@npm:^5.0.2":
   version: 5.0.2
   resolution: "arg@npm:5.0.2"
@@ -1970,6 +1952,24 @@ __metadata:
   checksum: 2042bbb14830b5cd0d584007db0eb0a7e933e66d1397e72a4293768d2332449bc3e312c266a0887ec20156dea388d8965e53b4fc5097f42d78593549016da089
   languageName: node
   linkType: hard
+
+"tasktrakr@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "tasktrakr@workspace:."
+  dependencies:
+    "@hotwired/stimulus": "npm:^3.2.2"
+    "@hotwired/turbo-rails": "npm:^7.3.0"
+    "@rails/actioncable": "npm:^7.0.7-2"
+    autoprefixer: "npm:latest"
+    esbuild: "npm:^0.19.4"
+    flowbite: "npm:^2.0.0"
+    nodemon: "npm:^3.0.1"
+    postcss: "npm:latest"
+    sortablejs: "npm:^1.15.0"
+    stimulus-dropdown: "npm:^2.1.0"
+    tailwindcss: "npm:latest"
+  languageName: unknown
+  linkType: soft
 
 "thenify-all@npm:^1.0.0":
   version: 1.6.0

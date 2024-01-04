@@ -1,7 +1,13 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+user1:
+  name: John Doe
+  email: john@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmation_token: <%= Devise.token_generator.generate(User, :confirmation_token) %>
+  confirmed_at: <%= Time.current %>
 
-one:
-  name: MyString
-
-two:
-  name: MyString
+user2:
+  name: Jane Smith
+  email: jane@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmation_token: <%= Devise.token_generator.generate(User, :confirmation_token) %>
+  confirmed_at: <%= Time.current %>

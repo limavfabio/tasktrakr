@@ -1,15 +1,15 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+task1:
+  title: Task 1
+  description: This is task 1
+  due_date: <%= Date.current + 7.days %>
+  status: pending
+  completed: false
+  project: project1
 
-one:
-  title: MyString
-  description: MyText
-  due_date: 2023-07-22
-  status: MyString
-  project: one
-
-two:
-  title: MyString
-  description: MyText
-  due_date: 2023-07-22
-  status: MyString
-  project: two
+task2:
+  title: Task 2
+  description: This is task 2
+  due_date: <%= Date.current + 14.days %>
+  status: completed
+  completed: true
+  project: project2
