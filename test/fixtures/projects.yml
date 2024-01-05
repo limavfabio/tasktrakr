@@ -1,5 +1,7 @@
 project1:
   name: Project 1
+  is_inbox: True
+
 
 project2:
   name: Project 2
