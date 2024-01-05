@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  include CollaboratorAddition
+
   before_action :authenticate_user!
   before_action :set_projects, only: %i[inbox show]
   before_action :set_project, only: %i[show edit update destroy add_collaborator]
@@ -71,21 +73,11 @@ class ProjectsController < ApplicationController
   # POST /projects/1/add_collaborator
   def add_collaborator
     email = params[:email].downcase
-    user = User.find_by(email:)
+    user = User.find_by(email: email.downcase)
 
-    if user.nil?
-      flash[:alert] = 'User with the entered email not found.'
-    elsif user.email == current_user.email
-      flash[:alert] = 'Can not add yourself as a collaborator.'
-    elsif @project.users.exists?(user.id)
-      flash[:alert] = 'This user is already a collaborator.'
-    else
+    if check_collaborator_by_email(email)
       @project.users << user
-      if @project.save
-        flash[:notice] = "#{email} has been added as a collaborator."
-      else
-        flash[:alert] = 'Failed to add collaborator.'
-      end
+      @project.save
     end
 
     redirect_to project_path(@project)
