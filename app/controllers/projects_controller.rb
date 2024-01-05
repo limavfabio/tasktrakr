@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_projects, only: %i[inbox show]
-  before_action :set_project, only: %i[show edit update destroy add_collaborator]
+  before_action :set_project, only: %i[show edit update destroy add_collaborator remove_collaborator]
   before_action :set_inbox, only: %i[inbox show]
 
   # GET /projects/inbox
@@ -79,6 +79,16 @@ class ProjectsController < ApplicationController
       @project.users << user
       @project.save
     end
+
+    redirect_to project_path(@project)
+  end
+
+  # DELETE /projects/1/remove_collaborator
+  def remove_collaborator
+    user = User.find_by(id: params[:user_id])
+    user_project = UserProject.find_by(user:, project: @project)
+
+    user_project.destroy if user_project.present?
 
     redirect_to project_path(@project)
   end

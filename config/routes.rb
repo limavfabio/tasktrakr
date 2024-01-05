@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     end
 
     post 'add_collaborator', on: :member
+    delete 'remove_collaborator', on: :member
     get 'inbox', on: :collection
   end
 
