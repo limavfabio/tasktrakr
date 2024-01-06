@@ -82,7 +82,7 @@ class TasksController < ApplicationController
 
     @task.insert_at(new_position)
     ActionCable.server.broadcast 'task_channel', { type: 'reorder', task: @task, old_position: }
-    @task.project.broadcast_replace(partial: 'tasks/tasks_table', target: 'tasks-table')
+    @task.project.broadcast_replace(partial: 'index/tasks_table', target: 'tasks-table')
 
     head :no_content
   end
