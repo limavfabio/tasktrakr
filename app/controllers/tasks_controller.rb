@@ -47,9 +47,9 @@ class TasksController < ApplicationController
       if @task.update(task_params)
 
         if task_params[:completed] == true or task_params[:completed] == '1'
-          @task.broadcast_replace(partial: 'tasks/task_checked')
+          @task.broadcast_replace(partial: 'index/task_checked')
         else
-          @task.broadcast_replace(partial: 'tasks/task_unchecked')
+          @task.broadcast_replace(partial: 'index/task_unchecked')
         end
 
         format.html { head :no_content, notice: 'Task was successfully updated.' }
