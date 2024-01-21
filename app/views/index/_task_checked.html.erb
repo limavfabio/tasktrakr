@@ -3,15 +3,8 @@
   <%= turbo_frame_tag "turbo_frame_task_#{task.id}" do %>
     <div
       class="
-        flex
-        items-center
-        border-b
-        border-slate-200
-        py-3
-        px-2
-        border-l-4
-        border-l-transparent
-        justify-between
+        flex items-center border-b border-slate-200 py-3 px-2 border-l-4
+        border-l-transparent justify-between
       "
     >
       <div class="inline-flex items-center space-x-2">
@@ -26,52 +19,27 @@
         />
         <div class="text-slate-500 line-through"><%= task.title %></div>
       </div>
-      <%# Stimulus Dropdown %>
-      <div data-controller="dropdown" class="relative">
-        <button type="button" data-action="dropdown#toggle click@window->dropdown#hide">Options</button>
 
-        <div
-          data-dropdown-target="menu"
-          class="
-            hidden
-            transition
-            transform
-            origin-top-right
-            absolute
-            right-0
-            bg-white
-            divide-gray-100
-            rounded-lg
-            w-44
-            shadow
-            divide-y
-            z-10
-            p-3
-          "
-          data-transition-enter-from="opacity-0 scale-95"
-          data-transition-enter-to="opacity-100 scale-100"
-          data-transition-leave-from="opacity-100 scale-100"
-          data-transition-leave-to="opacity-0 scale-95"
-        >
-          <ul class="py-2 text-gray-800">
-            <li>
-              <%= link_to "Edit task",
-              edit_task_path(task),
-              class: "block px-4 py-2 hover:bg-gray-100" %>
-            </li>
-            <li>
-              <%= button_to "Destroy task",
-              task,
-              method: :delete,
-              data: {
-                confirm: "Are you sure you want to delete this task?"
-              },
-              class: "block px-4 py-2 hover:bg-gray-100" %>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <%# Stimulus Dropdown %>
+      <%= render DropdownComponent.new do %>
+        <%= render DropdownButtonComponent.new.with_content "Options" %>
+        <%= render DropdownMenuComponent.new do %>
+          <li>
+            <%= link_to "Edit task",
+            edit_task_path(task),
+            class: "block px-4 py-2 hover:bg-gray-100" %>
+          </li>
+          <li>
+            <%= button_to "Destroy task",
+            task,
+            method: :delete,
+            data: {
+              confirm: "Are you sure you want to delete this task?",
+            },
+            class: "block px-4 py-2 hover:bg-gray-100" %>
+          </li>
+        <% end %>
+      <% end %>
     </div>
   <% end %>
-
 </li>
