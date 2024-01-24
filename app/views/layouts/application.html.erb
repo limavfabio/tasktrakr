@@ -27,11 +27,11 @@
   <body class="bg-gray-50 dark:bg-gray-800">
     <%= render "layouts/header" %>
 
-    <p class="notice text-succes"><%= notice %></p>
-    <p class="alert text-danger"><%= alert %></p>
-
     <main class="">
       <%= yield %>
     </main>
+
+    <%= render partial: "components/notification", locals: { message: flash[:notice] } %>
+    <%= render partial: "components/notification", locals: { message: flash[:alert] } %>
   </body>
 </html>

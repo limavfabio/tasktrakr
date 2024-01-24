@@ -1779,6 +1779,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"stimulus-use@npm:^0.52.2":
+  version: 0.52.2
+  resolution: "stimulus-use@npm:0.52.2"
+  peerDependencies:
+    "@hotwired/stimulus": ">= 3"
+    hotkeys-js: ">= 3"
+  checksum: f84c06df5bbfc254e42a0ad492afbd7f73675d1dfe47417b7d80200b0df6a123bea27457206f122494bb7df137f00776f04d1270e714a874ae68244dec49f8e8
+  languageName: node
+  linkType: hard
+
 "string-width-cjs@npm:string-width@^4.2.0, string-width@npm:^4.1.0":
   version: 4.2.3
   resolution: "string-width@npm:4.2.3"
@@ -1914,6 +1924,7 @@ __metadata:
     postcss: "npm:latest"
     sortablejs: "npm:^1.15.0"
     stimulus-dropdown: "npm:^2.1.0"
+    stimulus-use: "npm:^0.52.2"
     tailwindcss: "npm:latest"
   languageName: unknown
   linkType: soft

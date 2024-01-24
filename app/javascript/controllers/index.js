@@ -10,6 +10,9 @@ application.register("drag-and-drop", DragAndDropController)
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
 
+import NotificationToastController from "./notification_toast_controller"
+application.register("notification-toast", NotificationToastController)
+
 import ResetFormController from "./reset_form_controller"
 application.register("reset-form", ResetFormController)
 

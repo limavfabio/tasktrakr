@@ -11,6 +11,7 @@
     "postcss": "latest",
     "sortablejs": "^1.15.0",
     "stimulus-dropdown": "^2.1.0",
+    "stimulus-use": "^0.52.2",
     "tailwindcss": "latest"
   },
   "scripts": {
