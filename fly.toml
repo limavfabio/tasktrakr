@@ -1,11 +1,11 @@
-# fly.toml app configuration file generated for tasktrakr on 2023-10-31T11:30:33-03:00
+# fly.toml app configuration file generated for tasktrakr on 2024-06-08T16:12:54-03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "tasktrakr"
-primary_region = "gru"
-console_command = "/rails/bin/rails console"
+app = 'tasktrakr'
+primary_region = 'gru'
+console_command = '/rails/bin/rails console'
 
 [build]
 
@@ -15,8 +15,9 @@ console_command = "/rails/bin/rails console"
   auto_stop_machines = true
   auto_start_machines = true
   min_machines_running = 0
-  processes = ["app"]
+  processes = ['app']
 
-[[statics]]
-  guest_path = "/rails/public"
-  url_prefix = "/"
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
