@@ -1,0 +1,13 @@
+<div data-controller="dialog" data-action="click->dialog#backdropClose">
+  <dialog data-dialog-target="dialog" class="p-5 rounded-lg shadow-lg">
+    <div class="py-3">
+      <%= content %>
+    </div>
+
+    <div class="py-3 flex">
+      <button class="ml-auto" type="button" data-action="dialog#close" autofocus><%= @close_button %></button>
+    </div>
+  </dialog>
+
+  <button type="button" data-action="dialog#open" class=""><%= @open_button %></button>
+</div>

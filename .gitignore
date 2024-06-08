@@ -36,3 +36,5 @@
 /dump.rdb
 
 /.env
+
+/vendor
