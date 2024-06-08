@@ -7,4 +7,3 @@ options:
   postgresql: true
   prepare: false
   redis: true
-  sentry: true

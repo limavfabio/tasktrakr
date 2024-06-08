@@ -59,7 +59,6 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'erb-formatter'
-  gem 'faker'
   gem 'letter_opener'
   gem 'rails_live_reload'
   gem 'rubocop', require: false
@@ -95,4 +94,5 @@ gem 'sentry-rails', '~> 5.12'
 
 gem 'tailwindcss-rails'
 
+gem 'faker'
 gem 'view_component', '~> 3.10'
