@@ -1,8 +1,133 @@
-<div class="flex">
-  <div class="bg-gray-100">
-    <%= render partial: 'index/projects_pane' %>
+<div class="flex h-screen w-full">
+  <div class=" bg-gray-100 p-4 border-r border-gray-200 ">
+    <div class="mb-5"><%= render "index/project", project: @inbox %></div>
+
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-lg font-semibold">Projects</h2>
+      <%= render DropdownComponent.new do %>
+        <%= render DropdownButtonComponent.new do %>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-5 h-5"
+          >
+            <path d="M5 12h14"></path>
+            <path d="M12 5v14"></path>
+          </svg>
+        <% end %>
+
+        <%= render DropdownMenuComponent.new do %>
+          <%= form_with model: Project.new do |form| %>
+            <div class="mb-4">
+              <%= form.label 'Project\'s name',
+                         class: "block text-gray-700 text-sm font-bold mb-2" %>
+              <%= form.text_field :name,
+                              class: "w-full py-2 px-3 border rounded shadow appearance-none" %>
+            </div>
+
+            <div class="mb-4">
+              <%= form.submit "Save",
+                          class:
+                            "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="space-y-2">
+      <% @projects.each do |project| %>
+        <%= render "index/project", project: %>
+      <% end %>
+    </div>
   </div>
-  <div class="ml-8">
-    <%= render partial: 'index/project_details_pane' %>
+  <div class="p-6">
+    <div class="flex items-center justify-between mb-6">
+      <div class="flex gap-3">
+        <h1 class="text-2xl font-bold"><%= @project.name %></h1>
+
+        <% unless @project.inbox? %>
+          <%= render DropdownComponent.new do %>
+            <%= render DropdownButtonComponent.new do %>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="h-6 mt-1"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z"
+                />
+              </svg>
+            <% end %>
+
+            <%= render DropdownMenuComponent.new do %>
+              <%= render DropdownMenuItemComponent.new do %>
+                Edit project
+              <% end %>
+
+              <%= button_to "Delete Project",
+              project_path(@project),
+              method: :delete,
+              class: "block px-4 py-2 hover:bg-gray-100" %>
+
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <%= render DropdownComponent.new do %>
+          <%= render DropdownButtonComponent.new do %>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="h-5 mt-1"
+            >
+              <path d="M5 12h14"></path>
+              <path d="M12 5v14"></path>
+            </svg>
+          <% end %>
+          <%= render DropdownMenuComponent.new do %>
+            <%= form_with model: [@project, Task.new] do |form| %>
+              <div class="mb-4">
+                <%= form.label 'Task\'s title', class: "block text-gray-700 text-sm font-bold mb-2" %>
+                <%= form.text_field :title,
+                                class: "w-full py-2 px-3 border rounded shadow appearance-none" %>
+
+                <%= form.submit "Create Task",
+                            class:
+                              "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" %>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <!-- Tasks table -->
+    <div class="w-full max-w-40 mx-auto p-4 md:p-6">
+      <div class="grid grid-cols-1 gap-4 ">
+        <% @project.tasks.each do |task| %>
+          <%= render "index/task", task: %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

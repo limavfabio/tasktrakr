@@ -29,13 +29,10 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        # ActionCable.server.broadcast "task_channel", { type: "create", task: @task }
-
-        @task.broadcast_append_to(@project, target: 'tasks-table', partial: 'index/task_unchecked')
-        format.html { head :no_content, notice: 'Task was successfully created.' }
+        format.html { redirect_to project_url(@task.project), notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_to project_url(@task.project), notice: 'Task was not created.' }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
@@ -68,8 +65,6 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
-      # ActionCable.server.broadcast "task_channel", { type: "destroy", task: @task }
-
       format.html { head :no_content, notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end

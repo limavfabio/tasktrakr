@@ -29,7 +29,7 @@
 
   # Create tasks for each user's inbox
   5.times do
-    inbox = user.projects.find_by is_inbox: true
+    inbox = user.projects.find_by inbox: true
     inbox.tasks.create!(
       title: Faker::Lorem.sentence,
       description: Faker::Lorem.paragraph,

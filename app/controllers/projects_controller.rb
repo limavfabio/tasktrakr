@@ -96,7 +96,7 @@ class ProjectsController < ApplicationController
   private
 
   def set_projects
-    @projects = current_user.projects.where(is_inbox: false)
+    @projects = current_user.projects.where(inbox: false)
   end
 
   def set_project
@@ -104,7 +104,7 @@ class ProjectsController < ApplicationController
   end
 
   def set_inbox
-    @inbox = current_user.projects.find_by is_inbox: true
+    @inbox = current_user.projects.find_by inbox: true
   end
 
   # Only allow a list of trusted parameters through.
