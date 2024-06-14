@@ -123,8 +123,9 @@
     </div>
     <!-- Tasks table -->
     <div class="w-full max-w-40 mx-auto p-4 md:p-6">
-      <div class="grid grid-cols-1 gap-4 ">
-        <% @project.tasks.each do |task| %>
+      <div id="tasks-table" class="grid grid-cols-1 gap-4 ">
+        <% @project.tasks.sort_by(&:position).each do |task| %>
+
           <%= render "index/task", task: %>
         <% end %>
       </div>

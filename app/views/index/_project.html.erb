@@ -1,5 +1,5 @@
 <a
-  href=<%= url_for project %>
+  href=<%= project.inbox? ? inbox_projects_path : project_path(project) %>
   class="
     flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-200
     dark:hover:bg-gray-800 hover:text-gray-100 transition-colors

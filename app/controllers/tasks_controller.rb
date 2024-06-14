@@ -6,9 +6,7 @@ class TasksController < ApplicationController
   before_action :set_project, only: %i[index new create]
 
   # GET /tasks or /tasks.json
-  def index
-    @tasks = @project.tasks
-  end
+  def index; end
 
   # GET /tasks/1 or /tasks/1.json
   def show; end
@@ -29,6 +27,9 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.append('tasks-table', partial: 'index/task', locals: { task: @task })
+        end
         format.html { redirect_to project_url(@task.project), notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
@@ -65,6 +66,9 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.remove(@task)
+      end
       format.html { head :no_content, notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
