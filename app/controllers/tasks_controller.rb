@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_task, only: %i[show edit update destroy reorder]
@@ -62,8 +60,8 @@ class TasksController < ApplicationController
   # DELETE /tasks/1 or /tasks/1.json
   def destroy
     project = @task.project
-    @task.broadcast_remove_to(project)
     @task.destroy
+    # @task.broadcast_remove_to(project)
 
     respond_to do |format|
       format.turbo_stream do
@@ -80,8 +78,10 @@ class TasksController < ApplicationController
     old_position = @task.position
 
     @task.insert_at(new_position)
-    ActionCable.server.broadcast 'task_channel', { type: 'reorder', task: @task, old_position: }
-    @task.project.broadcast_replace(partial: 'index/tasks_table', target: 'tasks-table')
+
+    ActionCable.server.broadcast "project_#{@task.project.id}",
+                                 { type: 'reorder', old_position:, new_position:, user_id: current_user.id,
+                                   project_id: @task.project.id }
 
     head :no_content
   end
