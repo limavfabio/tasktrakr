@@ -79,9 +79,7 @@ class TasksController < ApplicationController
 
     @task.insert_at(new_position)
 
-    ActionCable.server.broadcast "project_#{@task.project.id}",
-                                 { type: 'reorder', old_position:, new_position:, user_id: current_user.id,
-                                   project_id: @task.project.id }
+    @task.project.broadcast_replace target: 'tasks-table', partial: 'index/tasks_table'
 
     head :no_content
   end

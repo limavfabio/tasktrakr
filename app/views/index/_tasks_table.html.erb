@@ -1,20 +1,9 @@
-<%= turbo_stream_from project %>
-<ul
-  id="tasks-table"
-  data-controller="drag-and-drop"
-  class="
-    max-w-lg
-    mx-auto
-    my-10
-    bg-white
-    p-8
-    rounded-xl
-    shadow
-    shadow-slate-300
-  "
->
-  <% project.tasks.sort_by(&:position).each do |task| %>
-    <%= render "index/task_checked", task: task if task.completed? %>
-    <%= render "index/task_unchecked", task: task unless task.completed? %>
-  <% end %>
-</ul>
+<div id="tasks-table" class="w-full max-w-40 mx-auto p-4 md:p-6">
+  <%= turbo_stream_from project %>
+  <div class="grid grid-cols-1 gap-4" data-controller="drag-and-drop">
+    <% project.tasks.sort_by(&:position).each do |task| %>
+
+      <%= render "index/task", task: %>
+    <% end %>
+  </div>
+</div>
