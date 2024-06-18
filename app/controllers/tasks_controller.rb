@@ -26,7 +26,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.save
 
-        @task.broadcast_append_to(@project, target: 'tasks-table', partial: 'index/task')
+        @task.broadcast_append_to(@project, target: 'tasks-inner-table', partial: 'index/task')
         format.html { head :no_content, notice: 'Task was successfully created.' }
 
         format.json { render :show, status: :created, location: @task }
