@@ -25,10 +25,10 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.append('tasks-table', partial: 'index/task', locals: { task: @task })
-        end
-        format.html { redirect_to project_url(@task.project), notice: 'Task was successfully created.' }
+
+        @task.broadcast_append_to(@project, target: 'tasks-table', partial: 'index/task')
+        format.html { head :no_content, notice: 'Task was successfully created.' }
+
         format.json { render :show, status: :created, location: @task }
       else
         format.html { redirect_to project_url(@task.project), notice: 'Task was not created.' }
@@ -61,12 +61,12 @@ class TasksController < ApplicationController
   def destroy
     project = @task.project
     @task.destroy
-    # @task.broadcast_remove_to(project)
+    @task.broadcast_remove_to(project)
 
     respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.remove(@task)
-      end
+      # format.turbo_stream do
+      #   render turbo_stream: turbo_stream.remove(@task)
+      # end
       format.html { head :no_content, notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
