@@ -42,11 +42,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.update(task_params)
 
-        if task_params[:completed] == true or task_params[:completed] == '1'
-          @task.broadcast_replace(partial: 'index/task_checked')
-        else
-          @task.broadcast_replace(partial: 'index/task_unchecked')
-        end
+        @task.broadcast_update partial: 'index/task'
 
         format.html { head :no_content, notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
