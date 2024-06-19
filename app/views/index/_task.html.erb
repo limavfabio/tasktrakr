@@ -44,11 +44,23 @@
             </svg>
           <% end %>
           <%= render DropdownMenuComponent.new do %>
-            <li>
-              <%= link_to "Edit task",
-              edit_task_path(task),
-              class: "block px-4 py-2 hover:bg-gray-100" %>
-            </li>
+            <%= render DialogComponent.new open_button: "Edit Task", close_button: "Cancel" do %>
+              <%= form_with model: [task] do |f| %>
+                <div class="gap-4 flex flex-col">
+                  <%= f.label 'Task\'s title', class: "block text-gray-700 text-sm font-bold mb-2" %>
+                  <%= f.text_field :title,
+                               class: "w-full py-2 px-3 border rounded shadow appearance-none" %>
+
+                  <%= f.label 'Task\'s due date', class: "block text-gray-700 text-sm font-bold mb-2" %>
+                  <%= f.text_field :due_date,
+                               class: "w-full py-2 px-3 border rounded shadow appearance-none" %>
+
+                  <%= f.submit "Update Task",
+                           class:
+                             "bg-green-700 text-white px-5 py-3 rounded hover:bg-green-600 shadow" %>
+                </div>
+              <% end %>
+            <% end %>
             <li>
               <%= button_to "Destroy task",
               task,
