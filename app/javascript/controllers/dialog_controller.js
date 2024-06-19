@@ -3,49 +3,17 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="dialog"
 export default class Dialog extends Controller {
   static targets = ["dialog"]
-  static values = {
-    open: {
-      type: Boolean,
-      default: false,
-    },
-  }
-
-  initialize() {
-    this.forceClose = this.forceClose.bind(this)
-  }
-
   connect() {
-    if (this.openValue) {
-      this.open()
-    }
-
-    document.addEventListener("turbo:before-render", this.forceClose)
-  }
-
-  disconnect() {
-    document.removeEventListener("turbo:before-render", this.forceClose)
+    console.log("dialog connected", this.dialogTarget)
   }
 
   open() {
-    this.dialogTarget.showModal()
+    console.log("open clicked")
+    this.dialogTarget.show()
   }
 
   close() {
-    this.dialogTarget.setAttribute("closing", "")
-
-    Promise.all(this.dialogTarget.getAnimations().map((animation) => animation.finished)).then(() => {
-      this.dialogTarget.removeAttribute("closing")
-      this.dialogTarget.close()
-    })
-  }
-
-  backdropClose(event) {
-    if ((event.target ) === this.dialogTarget) {
-      this.close()
-    }
-  }
-
-  forceClose() {
-    this.dialogTarget.close()
+    console.log("close clicked")
+    this.dialogTarget.hide()
   }
 }

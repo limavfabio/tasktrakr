@@ -7,7 +7,7 @@ class DropdownMenuComponent < ViewComponent::Base
       class="
         hidden transition transform origin-top-right absolute right-0 bg-white
         divide-gray-100 rounded-lg w-44 shadow divide-y z-10 p-3
-      "
+        "
       data-transition-enter-from="opacity-0 scale-95"
       data-transition-enter-to="opacity-100 scale-100"
       data-transition-leave-from="opacity-100 scale-100"

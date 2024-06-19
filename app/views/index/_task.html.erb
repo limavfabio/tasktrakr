@@ -1,4 +1,8 @@
-<li id="<%= dom_id task %>" data-task-id="<%= task.id %>">
+<li
+  id="<%= dom_id task %>"
+  data-task-id="<%= task.id %>"
+  data-controller="dialog"
+>
   <%= turbo_stream_from task %>
   <div class="bg-white rounded-lg shadow-md dark:bg-gray-900 dark:text-gray-200">
     <div
@@ -24,54 +28,27 @@
       </div>
       <div class="flex items-center space-x-4">
         <span class="text-sm text-gray-500 dark:text-gray-400"><%= task.due_date ? format_time(task.due_date) : "No due date" %></span>
-        <%= render DropdownComponent.new do %>
-          <%= render DropdownButtonComponent.new do %>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="w-5 h-5"
-            >
-              <polyline points="18 8 22 12 18 16"></polyline>
-              <polyline points="6 8 2 12 6 16"></polyline>
-              <line x1="2" x2="22" y1="12" y2="12"></line>
-            </svg>
-          <% end %>
-          <%= render DropdownMenuComponent.new do %>
-            <%= render DialogComponent.new open_button: "Edit Task", close_button: "Cancel" do %>
-              <%= form_with model: [task] do |f| %>
-                <div class="gap-4 flex flex-col">
-                  <%= f.label 'Task\'s title', class: "block text-gray-700 text-sm font-bold mb-2" %>
-                  <%= f.text_field :title,
-                               class: "w-full py-2 px-3 border rounded shadow appearance-none" %>
 
-                  <%= f.label 'Task\'s due date', class: "block text-gray-700 text-sm font-bold mb-2" %>
-                  <%= f.text_field :due_date,
-                               class: "w-full py-2 px-3 border rounded shadow appearance-none" %>
+        <sl-dropdown class="sortable-ignore">
+          <sl-icon-button slot="trigger" name="three-dots" label="Settings"></sl-icon-button>
 
-                  <%= f.submit "Update Task",
-                           class:
-                             "bg-green-700 text-white px-5 py-3 rounded hover:bg-green-600 shadow" %>
-                </div>
-              <% end %>
-            <% end %>
-            <li>
+          <sl-menu>
+            <sl-menu-item data-action="click->dialog#open">
+              Edit Task
+              <sl-icon slot="prefix" name="pen"></sl-icon>
+            </sl-menu-item>
+            <sl-menu-item>
               <%= button_to "Destroy task",
               task,
               method: :delete,
               data: {
                 confirm: "Are you sure you want to delete this task?",
-              },
-              class: "block px-4 py-2 hover:bg-gray-100" %>
-            </li>
-          <% end %>
-        <% end %>
+              } %>
+              <sl-icon slot="prefix" name="eraser"></sl-icon>
+            </sl-menu-item>
+          </sl-menu>
+        </sl-dropdown>
+
       </div>
     </div>
     <div class="px-4 py-3 space-y-2">
@@ -81,4 +58,34 @@
 
     </div>
   </div>
+
+  <%# Edit TaskDialog %>
+  <sl-dialog
+    class="sortable-ignore"
+    data-dialog-target="dialog"
+    label="Dialog"
+    data-dialog-target="dialog-overview"
+  >
+    <div>
+      <%= form_with model: task, class: "dark:text-gray-300" do |f| %>
+        <div class="gap-4 flex flex-col">
+          <%= f.label 'Task\'s title',
+                  class: "dark:text-gray-300 block text-gray-700 text-sm font-bold mb-2" %>
+          <%= f.text_field :title,
+                       class:
+                         "dark:bg-slate-800 w-full py-2 px-3 border rounded shadow appearance-none" %>
+          <%= f.label 'Task\'s due date',
+                  class: "dark:text-gray-300 block text-gray-700 text-sm font-bold mb-2" %>
+          <%= f.text_field :due_date,
+                       class:
+                         "dark:bg-slate-800 w-full py-2 px-3 border rounded shadow appearance-none" %>
+          <%= f.submit "Update Task",
+                   class:
+                     "bg-green-700 text-white px-5 py-3 rounded hover:bg-green-600 shadow" %>
+        </div>
+      <% end %>
+    </div>
+
+    <sl-button data-action="click->dialog#close" slot="footer" variant="primary">Close</sl-button>
+  </sl-dialog>
 </li>
