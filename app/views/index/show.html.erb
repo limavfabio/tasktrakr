@@ -39,57 +39,26 @@
         <h1 class="text-2xl font-bold"><%= @project.name %></h1>
 
         <% unless @project.inbox? %>
-          <%= render DropdownComponent.new do %>
-            <%= render DropdownButtonComponent.new do %>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="h-6 mt-1"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z"
-                />
-              </svg>
-            <% end %>
-
-            <%= render DropdownMenuComponent.new do %>
-              <%= render DropdownMenuItemComponent.new do %>
-                Edit project
-              <% end %>
-
-              <%= button_to "Delete Project",
-              project_path(@project),
-              method: :delete,
-              class: "block px-4 py-2 hover:bg-gray-100" %>
-
-              <%= render DialogComponent.new open_button: "Add Colaborator", close_button: "Cancel" do %>
-                <%= form_with url: add_collaborator_project_path(@project) do |f| %>
-
-                  <%= f.label :email, class: "block text-gray-700 text-sm font-bold mb-2" %>
-
-                  <%= f.text_field :email,
-                               placeholder: "john.doe@example.com",
-                               class:
-                                 "w-full py-2 px-3 mb-4 border rounded shadow appearance-none" %>
-
-                  <%= f.submit "Add Collaborator",
-                           class:
-                             "bg-green-700 text-white px-5 py-3 rounded hover:bg-green-600 shadow" %>
-                <% end %>
-              <% end %>
-
-            <% end %>
-          <% end %>
+          <sl-dropdown>
+            <sl-icon-button slot="trigger" name="gear">Project Options</sl-icon-button>
+            <sl-menu>
+            <%# <sl-menu-item data-action="click->dialog#open">
+              Add Collaborator
+              <sl-icon slot="prefix" name="pencil"></sl-icon>
+            </sl-menu-item> %>
+              <sl-menu-item>
+                <%= link_to "Edit Project", edit_project_path(@project) %>
+              </sl-menu-item>
+              <sl-menu-item>
+                <%= button_to "Delete Project", @project, method: :delete %>
+              </sl-menu-item>
+            </sl-menu>
+          </sl-dropdown>
         <% end %>
       </div>
 
       <div class="flex items-center gap-2">
-        <sl-dropdown>
+        <sl-dropdown data-controller="dropdown">
           <sl-button slot="trigger" caret>Add Task</sl-button>
           <sl-menu>
             <%= form_with model: [@project, Task.new], class: "px-4" do |form| %>
@@ -102,9 +71,12 @@
                                   "w-full py-2 px-3 border rounded shadow appearance-none dark:text-gray-300 dark:bg-slate-800" %>
               </div>
 
-                <%= form.submit "Save",
-                            class:
-                              "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+              <%= form.submit "Save",
+                          html_attributes: {
+                            "data-action": "dropdown#hide",
+                          },
+                          class:
+                            "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
             <% end %>
           </sl-menu>
         </sl-dropdown>
