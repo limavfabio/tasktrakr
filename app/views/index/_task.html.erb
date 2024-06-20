@@ -11,6 +11,7 @@
       "
     >
       <div class="flex items-center mr-10 space-x-2">
+        <sl-icon class='handle h-5 w-5' name="grip-vertical"></sl-icon>
         <input
           type="checkbox"
           <%= task.completed? ? "checked" : "" %>
@@ -29,7 +30,7 @@
       <div class="flex items-center space-x-4">
         <span class="text-sm text-gray-500 dark:text-gray-400"><%= task.due_date ? format_time(task.due_date) : "No due date" %></span>
 
-        <sl-dropdown class="sortable-ignore">
+        <sl-dropdown>
           <sl-icon-button slot="trigger" name="three-dots" label="Settings"></sl-icon-button>
 
           <sl-menu>
@@ -61,7 +62,6 @@
 
   <%# Edit TaskDialog %>
   <sl-dialog
-    class="sortable-ignore"
     data-dialog-target="dialog"
     label="Dialog"
     data-dialog-target="dialog-overview"
