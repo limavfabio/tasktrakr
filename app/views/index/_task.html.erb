@@ -1,3 +1,7 @@
+<%# I had to set the dialog controller to this parent element
+Because having the dialog inside the dropdown messes up the dialog
+This way I have the dialog at the end of the page, and can connect
+with the stimulus actions inside the dropdown %>
 <li
   id="<%= dom_id task %>"
   data-task-id="<%= task.id %>"
@@ -86,6 +90,6 @@
       <% end %>
     </div>
 
-    <sl-button data-action="click->dialog#close" slot="footer" variant="primary">Close</sl-button>
+    <sl-button data-action="click->dialog#close" slot="footer" variant="warning">Cancel</sl-button>
   </sl-dialog>
 </li>

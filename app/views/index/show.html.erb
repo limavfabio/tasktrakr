@@ -1,88 +1,113 @@
-<div class="flex h-screen w-full">
-  <div class="dark:bg-slate-800 bg-gray-100 p-4 ">
-    <div class="mb-5"><%= render "index/project", project: @inbox %></div>
+<%# I had to set the dialog controller to this parent element
+Because having the dialog inside the dropdown messes up the dialog
+This way I have the dialog at the end of the page, and can connect
+with the stimulus actions inside the dropdown %>
+  <div class="flex h-screen w-full" data-controller="dialog">
+    <div class="dark:bg-slate-800 bg-gray-100 p-4 ">
+      <div class="mb-5"><%= render "index/project", project: @inbox %></div>
 
-    <div class="flex items-center justify-between mb-4">
-      <h2 class="text-lg font-semibold">Projects</h2>
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-semibold">Projects</h2>
 
-      <sl-dropdown>
-        <sl-button slot="trigger" caret>Add Project</sl-button>
-        <sl-menu>
-          <%= form_with model: Project.new, class: "px-4" do |form| %>
-            <div class="mb-4">
-              <%= form.label 'Project\'s name',
-                         class:
-                           "block text-gray-700 text-sm font-bold mb-2 dark:text-gray-300" %>
-              <%= form.text_field :name,
-                              class:
-                                "w-full py-2 px-3 border rounded shadow appearance-none dark:text-gray-300 dark:bg-slate-800" %>
-            </div>
-
-            <div class="mb-4">
-              <%= form.submit "Save",
-                          class:
-                            "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
-            </div>
-          <% end %>
-        </sl-menu>
-      </sl-dropdown>
-    </div>
-    <div class="space-y-2">
-      <% @projects.each do |project| %>
-        <%= render "index/project", project: %>
-      <% end %>
-    </div>
-  </div>
-  <div class="p-6">
-    <div class="flex items-center justify-between mb-6">
-      <div class="flex gap-3">
-        <h1 class="text-2xl font-bold"><%= @project.name %></h1>
-
-        <% unless @project.inbox? %>
-          <sl-dropdown>
-            <sl-icon-button slot="trigger" name="gear">Project Options</sl-icon-button>
-            <sl-menu>
-            <%# <sl-menu-item data-action="click->dialog#open">
-              Add Collaborator
-              <sl-icon slot="prefix" name="pencil"></sl-icon>
-            </sl-menu-item> %>
-              <sl-menu-item>
-                <%= link_to "Edit Project", edit_project_path(@project) %>
-              </sl-menu-item>
-              <sl-menu-item>
-                <%= button_to "Delete Project", @project, method: :delete %>
-              </sl-menu-item>
-            </sl-menu>
-          </sl-dropdown>
-        <% end %>
-      </div>
-
-      <div class="flex items-center gap-2">
-        <sl-dropdown data-controller="dropdown">
-          <sl-button slot="trigger" caret>Add Task</sl-button>
+        <sl-dropdown>
+          <sl-button slot="trigger" caret>Add Project</sl-button>
           <sl-menu>
-            <%= form_with model: [@project, Task.new], class: "px-4" do |form| %>
+            <%= form_with model: Project.new, class: "px-4" do |form| %>
               <div class="mb-4">
-                <%= form.label 'Task\'s title',
+                <%= form.label 'Project\'s name',
                            class:
                              "block text-gray-700 text-sm font-bold mb-2 dark:text-gray-300" %>
-                <%= form.text_field :title,
+                <%= form.text_field :name,
                                 class:
                                   "w-full py-2 px-3 border rounded shadow appearance-none dark:text-gray-300 dark:bg-slate-800" %>
               </div>
 
-              <%= form.submit "Save",
-                          html_attributes: {
-                            "data-action": "dropdown#hide",
-                          },
-                          class:
-                            "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+              <div class="mb-4">
+                <%= form.submit "Save",
+                            class:
+                              "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+              </div>
             <% end %>
           </sl-menu>
         </sl-dropdown>
       </div>
+      <div class="space-y-2">
+        <% @projects.each do |project| %>
+          <%= render "index/project", project: %>
+        <% end %>
+      </div>
     </div>
-    <!-- Tasks table -->
-    <%= render "index/tasks_table", project: @project %>
+    <div class="p-6">
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex gap-3">
+          <h1 class="text-2xl font-bold"><%= @project.name %></h1>
+
+          <% unless @project.inbox? %>
+            <sl-dropdown>
+              <sl-icon-button slot="trigger" name="gear">Project Options</sl-icon-button>
+              <sl-menu>
+                <sl-menu-item data-action="click->dialog#open">
+                  Add Collaborator
+                  <sl-icon slot="prefix" name="pencil"></sl-icon>
+                </sl-menu-item>
+                <sl-menu-item>
+                  <%= link_to "Edit Project", edit_project_path(@project) %>
+                </sl-menu-item>
+                <sl-menu-item>
+                  <%= button_to "Delete Project", @project, method: :delete %>
+                </sl-menu-item>
+              </sl-menu>
+            </sl-dropdown>
+          <% end %>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <sl-dropdown data-controller="dropdown">
+            <sl-button slot="trigger" caret>Add Task</sl-button>
+            <sl-menu>
+              <%= form_with model: [@project, Task.new], class: "px-4" do |form| %>
+                <div class="mb-4">
+                  <%= form.label 'Task\'s title',
+                             class:
+                               "block text-gray-700 text-sm font-bold mb-2 dark:text-gray-300" %>
+                  <%= form.text_field :title,
+                                  class:
+                                    "w-full py-2 px-3 border rounded shadow appearance-none dark:text-gray-300 dark:bg-slate-800" %>
+                </div>
+
+                <%= form.submit "Save",
+                            html_attributes: {
+                              "data-action": "dropdown#hide",
+                            },
+                            class:
+                              "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+              <% end %>
+            </sl-menu>
+          </sl-dropdown>
+        </div>
+      </div>
+      <!-- Tasks table -->
+      <%= render "index/tasks_table", project: @project %>
+    </div>
+
+    <%# Add Collaborator Dialog %>
+    <sl-dialog
+      data-dialog-target="dialog"
+      label="Dialog"
+      data-dialog-target="dialog-overview"
+    >
+        <%= form_with url: add_collaborator_project_path(@project), class: "flex flex-col gap-4" do |f| %>
+          <%= f.email_field :email,
+                        class:
+                          "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
+                        placeholder: "john.doe@example.com",
+                        required: true %>
+
+          <%= f.submit "Add Collaborator",
+                   class:
+                     "bg-green-700 text-white px-5 py-2.5 rounded hover:bg-green-600 shadow" %>
+
+        <% end %>
+      <sl-button variant="warning" data-action="click->dialog#close" slot="footer">Cancel</sl-button>
+    </sl-dialog>
   </div>
-</div>
