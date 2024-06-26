@@ -11,24 +11,23 @@ with the stimulus actions inside the dropdown %>
 
         <sl-dropdown>
           <sl-button slot="trigger" caret>Add Project</sl-button>
-          <sl-menu>
-            <%= form_with model: Project.new, class: "px-4" do |form| %>
-              <div class="mb-4">
-                <%= form.label 'Project\'s name',
-                           class:
-                             "block text-gray-700 text-sm font-bold mb-2 dark:text-gray-300" %>
-                <%= form.text_field :name,
-                                class:
-                                  "w-full py-2 px-3 border rounded shadow appearance-none dark:text-gray-300 dark:bg-slate-800" %>
-              </div>
-
-              <div class="mb-4">
-                <%= form.submit "Save",
-                            class:
-                              "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
-              </div>
-            <% end %>
-          </sl-menu>
+            <div class="p-4 dark:bg-slate-900 rounded">
+              <%= form_with model: Project.new, class: "px-4" do |form| %>
+                <div class="mb-4">
+                  <%= form.label 'Project\'s name',
+                             class:
+                               "block text-gray-700 text-sm font-bold mb-2 dark:text-gray-300" %>
+                  <%= form.text_field :name,
+                                  class:
+                                    "w-full py-2 px-3 border rounded shadow appearance-none dark:text-gray-300 dark:bg-slate-800" %>
+                </div>
+                <div class="mb-4">
+                  <%= form.submit "Save",
+                              class:
+                                "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+                </div>
+              <% end %>
+            </div>
         </sl-dropdown>
       </div>
       <div class="space-y-2">
@@ -63,30 +62,29 @@ with the stimulus actions inside the dropdown %>
 
         <sl-dropdown data-controller="dropdown">
           <sl-button slot="trigger" caret>Add Task</sl-button>
-          <sl-menu>
-            <%= form_with model: [@project, Task.new],
-                                  data: {
-                                  controller: "reset-form",
-                                  action: "turbo:submit-end->reset-form#reset"
-                                },
-                                  class: "px-4" do |form| %>
-              <div class="mb-4">
-                <%= form.label 'Task\'s title',
-                           class:
-                             "block text-gray-700 text-sm font-bold mb-2 dark:text-gray-300" %>
-                <%= form.text_field :title,
-                                class:
-                                  "w-full py-2 px-3 border rounded shadow appearance-none dark:text-gray-300 dark:bg-slate-800" %>
-              </div>
-
-              <%= form.submit "Save",
-                          data: {
-                            action: "click->dropdown#hide",
-                          },
-                          class:
-                            "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
-            <% end %>
-          </sl-menu>
+            <div class="p-4 dark:bg-slate-900 rounded">
+              <%= form_with model: [@project, Task.new],
+                                    data: {
+                                    controller: "reset-form",
+                                    action: "turbo:submit-end->reset-form#reset"
+                                  },
+                                    class: "px-4" do |form| %>
+                <div class="mb-4">
+                  <%= form.label 'Task\'s title',
+                             class:
+                               "block text-gray-700 text-sm font-bold mb-2 dark:text-gray-300" %>
+                  <%= form.text_field :title,
+                                  class:
+                                    "w-full py-2 px-3 border rounded shadow appearance-none dark:text-gray-300 dark:bg-slate-800" %>
+                </div>
+                <%= form.submit "Save",
+                            data: {
+                              action: "click->dropdown#hide",
+                            },
+                            class:
+                              "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+              <% end %>
+            </div>
         </sl-dropdown>
       </div>
       <!-- Tasks table -->
