@@ -4,40 +4,29 @@ require 'application_system_test_case'
 
 class UsersTest < ApplicationSystemTestCase
   setup do
-    @user = users(:one)
+    @user = users(:user1)
+    @project = projects(:project1)
   end
 
-  test 'visiting the index' do
-    visit users_url
-    assert_selector 'h1', text: 'Users'
-  end
+  test 'full user flow' do
+    visit root_path
 
-  test 'should create user' do
-    visit users_url
-    click_on 'New user'
+    # Sign in
+    fill_in 'user[email]', with: @user.email
+    fill_in 'user[password]', with: 'password'
+    click_on 'Sign in'
+    assert_selector 'h1', text: @project.name
 
-    fill_in 'Name', with: @user.name
-    click_on 'Create User'
+    # Add project
+    find('sl-button', text: 'Add Project').click
+    fill_in 'project[name]', with: 'First Project Test'
+    find('input[type="submit"][value="Save"]').click
+    assert_selector 'h1', text: 'First Project Test'
 
-    assert_text 'User was successfully created'
-    click_on 'Back'
-  end
-
-  test 'should update User' do
-    visit user_url(@user)
-    click_on 'Edit this user', match: :first
-
-    fill_in 'Name', with: @user.name
-    click_on 'Update User'
-
-    assert_text 'User was successfully updated'
-    click_on 'Back'
-  end
-
-  test 'should destroy User' do
-    visit user_url(@user)
-    click_on 'Destroy this user', match: :first
-
-    assert_text 'User was successfully destroyed'
+    # Add task
+    find('sl-button', text: 'Add Task').click
+    fill_in 'task[title]', with: 'First Task - ProjectTest'
+    find('input[type="submit"][value="Save"]').click
+    assert_selector 'h3', text: 'First Task - ProjectTest'
   end
 end

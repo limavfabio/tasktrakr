@@ -25,7 +25,7 @@ class UserTest < ActiveSupport::TestCase
   test 'should create an inbox project after user creation' do
     user = User.create(email: 'test@example.com', password: 'password', name: 'Test User')
 
-    assert_equal 1, user.projects.where(is_inbox: true).count
-    assert_equal 'Inbox', user.projects.find_by(is_inbox: true).name
+    assert_equal 1, user.projects.where(inbox: true).count
+    assert_equal 'Inbox', user.projects.find_by(inbox: true).name
   end
 end

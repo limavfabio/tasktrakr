@@ -24,7 +24,7 @@ class ProjectTest < ActiveSupport::TestCase
     project = @user.projects.create(name: 'Test Project')
     project.tasks.create!(title: 'Example Task', description: 'Lorem ipsum', due_date: Date.current)
     assert_difference 'Task.count', -1 do
-      @project.destroy
+      project.destroy
     end
   end
 end

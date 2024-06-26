@@ -1,7 +1,11 @@
 project1:
   name: Project 1
-  is_inbox: True
+  inbox: True
+  users: [user1]
+
 
 
 project2:
   name: Project 2
+  inbox: False
+  users: [user1, user2]
