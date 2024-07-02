@@ -1,16 +1,13 @@
 # TaskTrakr
 
-TaskTrakr is a web-based task management application built with Ruby on Rails and Turbo Streams. It allows you to efficiently track and manage your tasks in real-time without the need for full page reloads.
+TaskTrakr is a web-based task management application built with Ruby on Rails and Turbo Streams.
 
 ## Features
 
 - **Real-Time Updates**: TaskTrakr leverages Turbo Streams and Stimulus to provide real-time updates when adding or removing tasks, reordering tasks, and more.
-- **Drag and Drop**: Easily reorder tasks by dragging and dropping them within your project board.
-- **User Authentication**: Secure user authentication system to protect your data.
-- **Project Management**: Organize tasks into projects for better task management.
-- **Collaborative Task Management**: Collaborate with team members in real-time, making it easy to work together on projects.
-- **Mobile-Friendly Interface**: Access TaskTrakr on the go with a responsive and intuitive mobile interface.
-- **Clean and Intuitive Interface**: A user-friendly interface that makes task management a breeze.
+- **Drag and Drop**: Reorder tasks by dragging and dropping them within your project board. Implemented with Stimulus and Sortable.js
+- **User Authentication**: Secure user authentication  via Devise.
+- **Unit Tests**: Unit and system test coverage.
 
 ## Getting Started
 
@@ -18,18 +15,21 @@ TaskTrakr is a web-based task management application built with Ruby on Rails an
 
 Before you begin, ensure you have met the following requirements:
 
-- Ruby: 2.7+
-- Rails: 6.0+
-- PostgreSQL: 10+
-- Node.js: 12+
-- Yarn: 1.0+
+#### For manual installation
+- Ruby: 3.3+
+- Rails: 7.1+
+- PostgreSQL: 16+
+
+#### For docker installation
+- Docker: 26+
+- Docker Compose
 
 ### Installation
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/tasktrakr.git
+   git clone https://github.com/limavfabio/tasktrakr.git
    ```
 
 2. Navigate to the project directory:
@@ -42,12 +42,6 @@ Before you begin, ensure you have met the following requirements:
 
    ```bash
    bundle install
-   ```
-
-4. Install JavaScript dependencies:
-
-   ```bash
-   yarn install
    ```
 
 5. Set up the database:
@@ -63,6 +57,21 @@ Before you begin, ensure you have met the following requirements:
    ```
 
 TaskTrakr should now be accessible at `http://localhost:3000`.
+
+#### Alternatively, you can install using docker:
+
+1. Open a terminal in the project's root directory.
+
+2. Build the docker image:
+   ```bash
+   docker build -t tasktrakr .
+   ```
+3. Start the docker container:
+   ```bash
+   docker run -p 3000:3000
+   ```
+
+4. Access TaskTrakr at http://localhost:3000.
 
 ### Usage
 
