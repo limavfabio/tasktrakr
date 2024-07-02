@@ -18,6 +18,6 @@ class User < ApplicationRecord
   private
 
   def create_inbox
-    projects.create!(name: 'Inbox', inbox: true)
+    projects.create(name: 'Inbox', inbox: true)
   end
 end
