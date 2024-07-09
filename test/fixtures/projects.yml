@@ -3,9 +3,17 @@ project1:
   inbox: True
   users: [user1]
 
-
-
 project2:
   name: Project 2
+  inbox: False
+  users: [user1]
+
+project3:
+  name: Project 3
+  inbox: True
+  users: [user2]
+
+project4:
+  name: Project 4
   inbox: False
   users: [user1, user2]
