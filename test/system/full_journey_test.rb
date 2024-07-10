@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 require 'application_system_test_case'
 
-class UsersTest < ApplicationSystemTestCase
+class FullJourneyTest < ApplicationSystemTestCase
   setup do
     @user = users(:user1)
     @project = projects(:project1)
